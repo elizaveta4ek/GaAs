@@ -57,17 +57,18 @@ B1PrimaryGeneratorAction::B1PrimaryGeneratorAction()
   fParticleGun  = new G4ParticleGun(n_particle);
 
   // default particle kinematic
-  
-  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
+ 
+  //for particle beam  
+/*  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
   G4String particleName;
   G4ParticleDefinition* particle
     = particleTable->FindParticle(particleName="neutron");
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
-  fParticleGun->SetParticleEnergy(1*MeV);
-  //fParticleGun->SetParticleDefinition(G4Geantino::Geantino()); 
-  //G4double PartEn = 0*eV;
-  //fParticleGun->SetParticleEnergy(PartEn);
+  fParticleGun->SetParticleEnergy(1*MeV);*/
+  fParticleGun->SetParticleDefinition(G4Geantino::Geantino()); 
+  G4double PartEn = 0*eV;
+  fParticleGun->SetParticleEnergy(PartEn);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -81,9 +82,9 @@ B1PrimaryGeneratorAction::~B1PrimaryGeneratorAction()
 
 void B1PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
-  /*G4ParticleDefinition* ion;
+  G4ParticleDefinition* ion;
   G4int i = (int)(2.*G4UniformRand());
-  std::cout << "i = " << i << std::endl;
+  //std::cout << "i = " << i << std::endl;
   switch(i){
       case 0: ion = G4IonTable::GetIonTable()->GetIon(31,72,0); break;
       case 1: ion = G4IonTable::GetIonTable()->GetIon(33,76,0); break;
@@ -91,36 +92,17 @@ void B1PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   
   fParticleGun->SetParticleDefinition(ion);
   
-  G4double a, b, c;
-  G4double n;
-  do {
-      a = (G4UniformRand()-0.5);
-      b = (G4UniformRand()-0.5);
-      c = (G4UniformRand()-0.5);
-      n = a*a + b*b + c*c; 
-  } while (n>1 || n == 0.0);
-  
-  n = std::sqrt(n);
-  a /= n;
-  b /= n;
-  c /= n;
-  
-  G4ThreeVector direction(a,b,c);
-  
-  fParticleGun->SetParticleMomentumDirection(direction);
-
-  G4cout << "x = " << a << ", y = " << b << ", z = " << c << '\n' << G4endl;
-    
     
   G4double x0 = 14*mm * (G4UniformRand());
   G4double y0 = 14*mm * (G4UniformRand());
   G4double z0 = 1000*um * (G4UniformRand()-0.5);
-  //G4double z0 = 1*cm;*/
-  
-  G4double x0 = 14*mm * (G4UniformRand());
+  //G4double z0 = 1*cm;
+ 
+  //for particle beam
+/*  G4double x0 = 14*mm * (G4UniformRand());
   G4double y0 = 14*mm * (G4UniformRand());
  // G4double z0 = 1000*um * (G4UniformRand()-0.5);
-  G4double z0 = -5*cm;
+  G4double z0 = -5*cm;*/
   
   fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
 

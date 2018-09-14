@@ -140,15 +140,15 @@ G4VPhysicalVolume* B1DetectorConstruction::Construct()
   G4VisAttributes* BoxColor2 = new G4VisAttributes(G4Color(1.0, 0.5, 0.25, 1));
 
   // Box shape
-  /*G4double pX = 55*um;
+  //кажный пиксель - отдельный объем
+  G4double pX = 55*um;
   G4double pY = 55*um;
-  G4double pZ = 1000*um;*/
-  
+  G4double pZ = 1000*um;
   
   //цельный объем
-  G4double pX = 14*mm;
+ /* G4double pX = 14*mm;
   G4double pY = 14*mm;
-  G4double pZ = 1000*um;
+  G4double pZ = 1000*um;*/
  
   G4Box* MySolidDet =
     new G4Box("Shape2",
@@ -162,8 +162,10 @@ G4VPhysicalVolume* B1DetectorConstruction::Construct()
                         "Shape2");           //its name
 
   logicShape2->SetVisAttributes(BoxColor2);
-               
- /* for (int i = 0; i<256; i++){
+   
+  
+  //кажный пиксель - отдельный объем
+  for (int i = 0; i<256; i++){
       for (int j = 0; j<256; j++){
             G4ThreeVector pos2 = G4ThreeVector(i*55*um, j*55*um, 0);
             new G4PVPlacement(0,                       //no rotation
@@ -176,10 +178,10 @@ G4VPhysicalVolume* B1DetectorConstruction::Construct()
                             checkOverlaps = 0);          //overlaps checking
       }
           
-    }*/
+    }
   
   //цельный объем
-  G4ThreeVector pos2 = G4ThreeVector(7*mm, 7*mm, 0);
+ /* G4ThreeVector pos2 = G4ThreeVector(7*mm, 7*mm, 0);
             new G4PVPlacement(0,                       //no rotation
                             pos2,                    //at position
                             logicShape2,             //its logical volume
@@ -188,7 +190,7 @@ G4VPhysicalVolume* B1DetectorConstruction::Construct()
                             false,                   //no boolean operation
                             0,                       //copy number
                             checkOverlaps = 0);          //overlaps checking
-  
+  */
   
   //
   G4VSensitiveDetector *mySD = new B1mySensitiveDetector("mydet");
